@@ -9,6 +9,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  headerName: {
+    type: String,
+    required: true
+  },
+  templateId: {
+    type: Number,
+    required: true
+  },
   products: {
     type: Array,
     required: false
