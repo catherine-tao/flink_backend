@@ -8,20 +8,21 @@ router.post("/", async (req, res) => {
     // console.log("here")
   try {
     const user = await User.find({ email: req.body.email });
-    console.log(user);
+    // console.log(user);
     if (user.length > 0) {
       return res.status(409).json({
         message: "This email is already signed up",
       });
     }
-    console.log("no user created")
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(req.body.password, salt);
 
-    await new User({
+    const newUser = await new User({
       email: req.body.email,
       password: hashPassword,
     }).save();
+
+    console.log("user created", newUser)
 
     res.status(201).json({
       message: "New user created",
