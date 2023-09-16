@@ -5,21 +5,15 @@ const jwt = require("jsonwebtoken");
 
 //login
 router.post("/", async (req, res) => {
-  console.log("HIHIHIHI");
   try {
     const user = await User.findOne({ email: req.body.email });
-    console.log("HIHIHIHI2", user);
 
     if (user) {
-        console.log("HIHIHIHI3");
-
       const passwordIsValid = await bcrypt.compare(
         req.body.password,
         user.password
       );
       if (passwordIsValid) {
-        console.log("HIHIHIHI4");
-
         // const token = jwt.sign({ email: user.email }, process.env.JWT_TOKEN);
         res.status(200).json({
           message: "Logged in successfully",

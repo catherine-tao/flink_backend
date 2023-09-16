@@ -20,6 +20,7 @@ router.post("/", async (req, res) => {
     const newUser = await new User({
       email: req.body.email,
       password: hashPassword,
+      products: []
     }).save();
 
     console.log("user created", newUser)
