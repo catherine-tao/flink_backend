@@ -21,7 +21,8 @@ router.post("/", async (req, res) => {
       email: req.body.email,
       password: hashPassword,
       username: req.body.username,
-      products: []
+      products: [],
+      backgroundImage: ""
     }).save();
 
     console.log("user created", newUser)
