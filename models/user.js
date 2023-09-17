@@ -24,7 +24,20 @@ const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true
+  },
+  instagram: {
+    type: String,
+  },
+  facebook: {
+    type: String,
+  },
+  tiktok: {
+    type: String,
+  },
+  backgroundUrl: {
+    type: String,
   }
+
 });
 
 const User = mongoose.model("User", userSchema);
