@@ -12,6 +12,10 @@ const userSchema = new mongoose.Schema({
   products: {
     type: Array,
     required: false
+  },
+  username: {
+    type: String,
+    required: true
   }
 });
 
