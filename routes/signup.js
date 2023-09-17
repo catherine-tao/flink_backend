@@ -5,7 +5,7 @@ const User = require("../models/user");
 
 //signup 
 router.post("/", async (req, res) => {
-    // console.log("here")
+    console.log("here")
   try {
     const user = await User.find({ email: req.body.email });
     // console.log(user);

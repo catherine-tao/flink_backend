@@ -9,6 +9,14 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  headerName: {
+    type: String,
+    required: true
+  },
+  templateId: {
+    type: Number,
+    required: true
+  },
   products: {
     type: Array,
     required: false
@@ -23,4 +31,8 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema);
+
+module.exports = {
+  User,
+}
