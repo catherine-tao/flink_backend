@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const signupRoute = require("./routes/signup");
 const loginRoute = require("./routes/login");
 const promptRoute = require("./routes/prompt");
+const updateDataRoute = require("./routes/updateData");
 
 
 require("dotenv/config");
@@ -26,5 +27,6 @@ app.use(express.json());
 app.use("/signup", signupRoute);
 app.use("/login", loginRoute);
 app.use("/prompt", promptRoute);
+app.use("/updateData", updateDataRoute);
 
 app.listen(port);
