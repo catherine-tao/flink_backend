@@ -7,12 +7,8 @@ const axios = require("axios");
 //prompt
 router.post("/:email", async (req, res) => {
   try {
-    console.log("backgrounding", req.body.backgroundUrl);
     const user = await User.findOne({ email: req.params.email });
-    console.log(user);
     if (user) {
-      console.log("i'm here", user);
-
       try {
         await User.updateOne(
           { email: req.params.email },

@@ -18,7 +18,6 @@ const port = 3000;
 
 mongoose.connect(process.env.DATABASE_URI);
 
-console.log("index")
 
 app.use(cors());
 

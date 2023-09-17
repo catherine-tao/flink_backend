@@ -8,9 +8,7 @@ const axios = require("axios");
 router.post("/:email", async (req, res) => {
   try {
     const user = await User.findOne({ email: req.params.email });
-    console.log("req.body.promptURL", req.body.promptURL);
     if (user) {
-      console.log("two");
 
       const productTitle = {
         method: "POST",
@@ -45,7 +43,6 @@ router.post("/:email", async (req, res) => {
       };
 
       try {
-        console.log("three");
         const responseTitle = await axios.request(productTitle);
         const responseDescription = await axios.request(productDescription);
         const itemTitle = responseTitle.data.generations[0].text;
@@ -65,7 +62,6 @@ router.post("/:email", async (req, res) => {
           { products: updatedArray }
         );
 
-        console.log("user", user);
         res.status(200).json({
           userData: updatedArray
         });
@@ -81,17 +77,12 @@ router.post("/:email", async (req, res) => {
 });
 
 router.post("/delete/:email", async (req, res) => {
-  console.log("DELETE");
   try {
     const user = await User.findOne({ email: req.params.email });
-    console.log("req.body.url", req.body.url);
     if (user) {
       try {
-        console.log("two");
         const productUrls = user.products.filter((product) => {
-          //   console.log(" url != req.body.url", product.url != req.body.url);
-          //   console.log(" url", product.url);
-          //   console.log(" url ", req.body.url);
+        
           return product.url != req.body.url;
         });
         await User.updateOne(
@@ -99,7 +90,6 @@ router.post("/delete/:email", async (req, res) => {
           { products: productUrls }
         );
 
-        // console.log("user", user);
         res.status(200).json({
           newProductsUrl: productUrls,
         });
@@ -115,10 +105,8 @@ router.post("/delete/:email", async (req, res) => {
 });
 
 router.get("/:email", async (req, res) => {
-  console.log("byebye1");
   try {
     const user = await User.findOne({ email: req.params.email });
-    console.log("user.products", user.products);
 
     if (user) {
       res.json({
@@ -133,4 +121,21 @@ router.get("/:email", async (req, res) => {
   }
 });
 
+router.get("/name/:email", async (req, res) => {
+    try {
+      const user = await User.findOne({ email: req.params.email });
+  
+      if (user) {
+        res.json({
+            name: user.name,
+        });
+      }
+    } catch (err) {
+      res.status(500).json({
+        error: err,
+        message: "Invalid token",
+      });
+    }
+  });
+  
 module.exports = router;
